@@ -1,0 +1,271 @@
+//import logo from './logo.svg';
+//import './App.css';
+
+/*Task : Personalized Greeting Card Generator
+Scenario:
+Your company is building an internal tool for HR to send birthday greeting cards to employees. 
+You need to create a simple card that dynamically shows the employee's name, age, and a personalized birthday message.
+ 
+Requirements:
+ 
+Declare constants: employeeName, employeeAge
+ 
+Display:
+ 
+employeeName
+employeeAge
+ 
+A dynamic message: You are now officially in your 30s! (if age ≥ 30) or Enjoy your 20s while it lasts! (if age < 30)
+ 
+Apply inline styles for the greeting: color: blue, fontWeight: bold*/
+/*function App() {
+ 
+   const employeeName=prompt("Enter your name");
+   const employeeAge= prompt("Enter your age");
+ 
+  return (
+    <div>
+       <h1>Employee Details </h1>
+        <p>Employee Name: {employeeName}</p>
+        <p>Employee Age: {employeeAge}</p>
+ 
+        <p style={{color: "blue", fontSize : "30px", fontWeight: "bold"}}>
+           {employeeAge>=30 ? `${employeeName} are officially in your 30s` : `Enjoy your 20s while it lasts, ${employeeName}!`  }
+ 
+        </p>
+ 
+    
+    </div>
+  );
+}
+ 
+export default App;
+*/
+
+/*Bank Account Dashboard-
+You are building a Bank Dashboard that shows a list of customer accounts. Each account displays the customer’s name, account number, account type, and balance. This is handled using props in a reusable BankAccountCard component.*/
+/*import BankAccountCard from "./BankAccountCard";
+
+function App() {
+  const accounts = [
+    {
+      name: "John Doe",
+      accountNumber: "12345678",
+      accountType: "Savings",
+      balance: 25000,
+    },
+    
+    {
+      name: "Ritesh",
+      accountNumber: "45678901",
+      accountType: "Savings",
+      balance: 100000,
+    },
+  ];
+
+
+  return (
+    <React.Fragment>
+      <h1>Bank Account Dashboard</h1>
+      {accounts.map((account, index) => (
+        <BankAccountCard
+          key={index}
+          name={account.name}
+          accountNumber={account.accountNumber}
+          accountType={account.accountType}
+          balance={account.balance}
+        />
+      ))}
+    </React.Fragment>
+  );
+}*/
+
+/*
+import React, { Component } from 'react';
+
+class App extends Component {
+  constructor(props) {
+    super(props); 
+    this.state = {
+      count: 0
+    };
+  }
+
+  incrementCount=()=>{
+  let newCount = this.state.count;
+  newCount = (newCount===9) ? 0: newCount+1;
+  this.setState({ 
+    count: newCount 
+  });
+}
+
+decrementCount=()=>{
+  let newCount = this.state.count;
+  newCount = (newCount>0)?newCount-1:newCount;
+  this.setState({
+    count : newCount
+  });
+}
+
+  render() {
+    return (
+      <div >
+        <h1>Counter: {this.state.count}</h1>
+        <button onClick={this.incrementCount}>Increase</button>
+        <button onClick={this.decrementCount}>Decrease</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+*/
+
+
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------
+Task:  Task Manager with Priorities
+ 
+Use Case:
+You are building a Task Management Dashboard for a software team. The app displays a list of tasks, each with:
+ 
+* Task title
+* Priority (High, Medium, Low)
+* Completion status
+ 
+ 
+Developers should be able to:
+ 
+1. View tasks using reusable functional components.
+2. Mark tasks as complete.
+3. Filter tasks based on priority and completion.
+
+
+import React, { Component } from 'react';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: 'All',
+      tasks: [
+        { id: 1, title: 'ABC', description: 'Resolve 401 error', priority: 'High', completed: false },
+        { id: 2, title: 'DEF', description: 'Cover utils.js', priority: 'Medium', completed: false },
+        { id: 3, title: 'GHI', description: 'Fix dashboard', priority: 'Low', completed: false }
+      ]
+    };
+  }
+
+  handleFilterChange = (event) => {
+    this.setState({ filter: event.target.value });
+  };
+
+  handleToggleComplete = (id) => {
+    const updatedTasks = this.state.tasks.map(task => {
+      if (task.id === id) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    this.setState({ tasks: updatedTasks });
+  };
+
+  render() {
+    const { filter, tasks } = this.state;
+    const orderedTasks = ['High', 'Medium', 'Low']
+      .flatMap(priority =>
+        tasks
+          .filter(task => (filter === 'All' || task.priority === filter) && task.priority === priority)
+      );
+
+    return (
+      <div>
+        <h3>Task Manager</h3>
+        <select onChange={this.handleFilterChange} value={filter}>
+          <option>All</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+
+        <br /><br />
+
+        {orderedTasks.map(task => (
+          <div key={task.id}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>{task.title}</strong><br />
+                    {task.description}
+                  </td>
+                  <td>
+                    {task.priority}
+                  </td>
+                  <td>
+                    <button onClick={() => this.handleToggleComplete(task.id)}>
+                      {task.completed ? 'Completed' : 'Not Completed'}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default App;
+*/
+
+/*Task : Dynamic Form Validation
+Scenario:
+You are building a registration form for a website that requires a valid email and password. When the user types, check if the email is in a valid format and the password meets the required length (min. 6 characters).
+ 
+Requirements:
+ 
+Create input fields for email and password.
+ 
+Display a message when the email or password is invalid.
+ 
+Use onChange event to capture the input and validate the fields in real-time.
+ 
+Show a submit button that is disabled if either field is invalid.
+*/
+
+import React, {useState} from "react";
+/*
+function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailValid=email.includes("@") && email.includes(".");
+  const passValid=(password.length>=6);
+  const hasAlphabet=
+
+  return (
+    <div>
+      <h2>Registration Form</h2>
+      <input
+        type="text"
+        placeholder="Email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <button disabled={!(emailValid && passValid)}>Submit</button>
+    </div>
+  );
+}
+*/
+export default App;
